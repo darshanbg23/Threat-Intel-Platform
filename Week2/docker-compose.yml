@@ -1,4 +1,7 @@
+version: '3.8'
+
 services:
+
   mongodb:
     image: mongo:7.0
     container_name: mongodb
@@ -16,10 +19,16 @@ services:
       - discovery.type=single-node
       - xpack.security.enabled=false
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     ports:
       - "9200:9200"
     networks:
       - elk
+    mem_limit: 1g
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.13.0

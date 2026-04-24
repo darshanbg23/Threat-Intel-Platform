@@ -1,11 +1,22 @@
 # Data normalization - ensure consistent format
 
+from datetime import datetime
+
+
+def format_timestamp(ts):
+    try:
+        dt = datetime.strptime(ts, "%Y-%m-%d %H:%M:%S")
+        return dt.isoformat()
+    except:
+        return ts
+
+
 def normalize_record(record):
     # Ensure required fields: ip, source, timestamp
     normalized = {
         "ip": record.get("ip", "").strip() if record.get("ip") else "",
         "source": record.get("source", "").strip() if record.get("source") else "unknown",
-        "timestamp": record.get("timestamp", ""),
+        "timestamp": format_timestamp(record.get("timestamp", "")), 
     }
     
     # Include other fields

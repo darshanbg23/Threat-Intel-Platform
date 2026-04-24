@@ -1,26 +1,25 @@
 from elasticsearch import Elasticsearch
 
+
+# Connect to Elasticsearch
 def connect_elasticsearch():
     try:
-        es = Elasticsearch(
-            "http://localhost:9200",
-            verify_certs=False,
-            request_timeout=30
-        )
+        es = Elasticsearch("http://localhost:9200")
 
-        if es.ping():
-            print("Connected to Elasticsearch")
-            return es
-        else:
-            raise Exception("Elasticsearch not reachable")
+        # Test connection properly
+        es.info()
+        print("Connected to Elasticsearch")
+
+        return es
 
     except Exception as e:
         print("Connection error:", e)
-        raise
+        return None
 
 
+# Create index with mapping
 def create_index(es, index_name="threat-intel"):
-    # Create index with field mapping
+
     mapping = {
         "mappings": {
             "properties": {
@@ -33,24 +32,26 @@ def create_index(es, index_name="threat-intel"):
             }
         }
     }
-    
+
     try:
+        # Check if index exists
         if not es.indices.exists(index=index_name):
             es.indices.create(index=index_name, body=mapping)
-            print(f"Created index: {index_name}")
+            print("Index created:", index_name)
         else:
-            print(f"Index already exists: {index_name}")
+            print("Index already exists:", index_name)
+
     except Exception as e:
-        print(f"Error creating index: {e}")
+        print("Error creating index:", e)
 
 
+# Insert documents into Elasticsearch
 def insert_documents(es, records, index_name="threat-intel"):
-    # Insert records into Elasticsearch
-    for i, record in enumerate(records):
-        try:
-            es.index(index=index_name, id=i, body=record)
-        except Exception as e:
-            print(f"Error inserting record {i}: {e}")
-    
-    print(f"Inserted {len(records)} documents")
 
+    for record in records:
+        try:
+            es.index(index=index_name, document=record)
+        except Exception as e:
+            print("Error inserting record:", e)
+
+    print("Inserted", len(records), "documents")
