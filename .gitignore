@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+threatvenv/
+
+# Environment variables (IMPORTANT - DO NOT COMMIT)
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+.AppleDouble
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Logs and temp files
+*.log
+*.tmp
+*.cache
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Package manager
+*.egg-info
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Reports
+reports/*.csv
+reports/*.json

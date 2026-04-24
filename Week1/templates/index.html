@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Threat Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-content">
+        <div class="header-left">
+            <h1 class="page-title">🛡️ OSINT Threat Dashboard</h1>
+            <p class="page-subtitle">Threat Intelligence Monitoring System</p>
+        </div>
+        {% if last_updated %}
+        <div class="header-right">
+            <div class="last-sync">
+                <span class="label">Last Sync</span>
+                <span class="time">{{ last_updated }}</span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+    
+    <!-- METRICS SECTION -->
+    <section class="metrics-section">
+        
+        <!-- Total IPs Card -->
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-body">
+                <h3 class="metric-label">Total IPs</h3>
+                <p class="metric-value">{{ total }}</p>
+            </div>
+        </div>
+
+        <!-- Sources Card -->
+        <div class="metric-card">
+            <div class="metric-icon">📡</div>
+            <div class="metric-body">
+                <h3 class="metric-label">Data Sources</h3>
+                <p class="metric-value">{{ sources }}</p>
+            </div>
+        </div>
+
+        <!-- Status Card -->
+        <div class="metric-card">
+            <div class="metric-icon">✅</div>
+            <div class="metric-body">
+                <h3 class="metric-label">Status</h3>
+                <p class="metric-value status-active">Active</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- DATA TABLE SECTION -->
+    <section class="data-section">
+        <div class="data-header">
+            <h2>Threat Indicators</h2>
+            <p class="data-subtitle">All collected and validated IP addresses</p>
+        </div>
+
+        {% if data %}
+        <div class="table-wrapper">
+            <table class="threat-table">
+                <thead>
+                    <tr>
+                        <th class="col-rank">#</th>
+                        <th class="col-ip">IP Address</th>
+                        <th class="col-source">Source</th>
+                        <th class="col-timestamp">Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for idx, row in data %}
+                    <tr class="table-row">
+                        <td class="col-rank">{{ idx }}</td>
+                        <td class="col-ip">
+                            <code class="ip-code">{{ row.ip }}</code>
+                        </td>
+                        <td class="col-source">
+                            <span class="source-badge">{{ row.source }}</span>
+                        </td>
+                        <td class="col-timestamp">{{ row.timestamp if row.timestamp else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <h3 class="empty-title">No Threat Data Available</h3>
+            <p class="empty-message">Run the OSINT pipeline to fetch and store threat intelligence data.</p>
+            <p class="empty-hint">Command: <code>python main.py</code></p>
+        </div>
+        {% endif %}
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>OSINT Threat Intelligence System • Week 1 • Real-time Threat Monitoring</p>
+</footer>
+
+</body>
+</html>

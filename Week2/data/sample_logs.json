@@ -1,0 +1,6 @@
+[
+  {"ip": "192.168.1.10", "threat": "malware", "source": "otx", "timestamp": "2024-01-15T10:30:45Z"},
+  {"ip": "8.8.8.8", "threat": "benign", "source": "internal", "timestamp": "2024-01-15T10:35:12Z"},
+  {"ip": "45.33.32.156", "threat": "botnet", "source": "abuseipdb", "timestamp": "2024-01-15T10:40:22Z"},
+  {"ip": "103.21.244.0", "threat": "phishing", "source": "virustotal", "timestamp": "2024-01-15T10:45:55Z"}
+]
