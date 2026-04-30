@@ -1,0 +1,7 @@
+MONGODB_HOST = 'localhost'
+MONGODB_PORT = 27017
+MONGODB_DB = 'threat_intel'
+MONGODB_COLLECTION = 'threats'
+
+DEBUG = True
+LOG_LEVEL = 'INFO'
