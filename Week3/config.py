@@ -1,7 +1,8 @@
-MONGODB_HOST = 'localhost'
-MONGODB_PORT = 27017
-MONGODB_DB = 'threat_intel'
-MONGODB_COLLECTION = 'threats'
+# Configuration for Week3 - Policy Engine
 
-DEBUG = True
-LOG_LEVEL = 'INFO'
+MONGO_URI = "mongodb://localhost:27017/"
+DB_NAME = "threat_db"
+COLLECTION_NAME = "indicators"
+RISK_THRESHOLD = "HIGH"
+CONFIDENCE_THRESHOLD = 70
+SLEEP_TIME = 10
