@@ -1,3 +1,4 @@
+#policy engine 
 import time
 from pymongo import MongoClient
 from config import MONGO_URI, DB_NAME, COLLECTION_NAME, SLEEP_TIME
@@ -6,7 +7,7 @@ blocked_ips = set()
 def connect_db():
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
-collection = db[COLLECTION_NAME]
+cat /home/kali/.ssh/id_ed25519.pubcollection = db[COLLECTION_NAME]
 return collection
 def get_high_risk_ips():
 print("Checking MongoDB...")
