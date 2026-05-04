@@ -57,3 +57,6 @@ build/
 # Reports
 reports/*.csv
 reports/*.json
+
+yes
+yes.pub
